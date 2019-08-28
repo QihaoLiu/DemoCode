@@ -3,16 +3,12 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 26
 
-
-
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -31,4 +27,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    compile group: 'com.google.guava', name: 'guava', version: '23.5-android'
+
+    api 'com.blankj:utilcode:1.25.7'
 }

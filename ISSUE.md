@@ -106,3 +106,30 @@ GCJ02：由中国国家测绘局制订的地理信息系统的坐标系统，是
 BD09：百度坐标系，在GCJ02坐标系基础上再次加密。其中BD09LL表示百度经纬度坐标，BD09MC表示百度墨卡托米制坐标。
 
 全球通用第一种，如果使用高德或者百度，要转换到第一种才能通用
+
+### 3.指定value获取
+
+获取当前locale 
+
+Resources resources = Utils.getApp().getResources();
+
+Locale locale = resources.getConfiguration().locale;
+
+指定语言
+
+Configuration config = resources.getConfiguration();
+
+config.locale = new Locale("en", "US");
+
+Resources resourcesEn = new Resources(resources.getAssets(), resources.getDisplayMetrics(), config);
+
+获取value
+
+resourcesEn.getString(valuesId,config);
+
+重置语言
+
+config.locale = locale;
+
+new Resources(resources.getAssets(), resources.getDisplayMetrics(), config);
+
