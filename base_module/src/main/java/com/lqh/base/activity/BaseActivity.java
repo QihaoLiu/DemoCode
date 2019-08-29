@@ -241,8 +241,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
         LogUtil.d(TAG, "onPause >>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
-    /**销毁并回收内存
-     * @warn 子类如果要使用这个方法内用到的变量，应重写onDestroy方法并在super.onDestroy();前操作
+    /**
+     * 重写onDestroy方法并在super.onDestroy();前操作
      */
     @Override
     protected void onDestroy() {
