@@ -4,13 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.annotation.Nullable;
 
 import com.blankj.utilcode.util.StringUtils;
 import com.lqh.base.utils.LogUtil;
 
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * DemoCode

@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -16,6 +17,8 @@ import com.lqh.base.R;
 import com.lqh.base.interfaces.ActivityPresenter;
 import com.lqh.base.receiver.BaseBroadcastReceiver;
 import com.lqh.base.utils.LogUtil;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * DemoCode
@@ -109,6 +112,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LogUtil.d(TAG, "onCreate <<<<<<<<<<<<<<<<<<<<<<<");
+        BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
+        BarUtils.setStatusBarLightMode(this, true);
         setContentView(getLayoutId());
         context = (BaseActivity) getActivity();
         isAlive = true;
