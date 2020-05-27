@@ -3,6 +3,7 @@ package com.lqh.demo;
 import android.app.Application;
 
 import com.lqh.base.BaseManager;
+import com.lqh.database.DBManager;
 
 /**
  * DemoCode
@@ -17,5 +18,6 @@ public class DemoCodeApplication extends Application{
         super.onCreate();
         BaseManager.getInstance().init(this);
         BaseManager.getInstance().setDebug(true);
+        DBManager.getInstance().init(this);
     }
 }
