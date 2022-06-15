@@ -5,26 +5,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lqh.demo.MainActivity">
+    tools:context="com.lqh.demo.ui.activity.MainActivity">
 
-    <TextView
-        android:id="@+id/hello"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="Hello World!"
-        android:padding="@dimen/padding_middle"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/itemView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hello"
+    <com.gauravk.bubblenavigation.BubbleNavigationLinearView
+        android:id="@+id/navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rect_white"
+        android:elevation="10dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item_music"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:bt_colorActive="@color/color_base_music"
+            app:bt_colorInactive="@color/gray"
+            app:bt_icon="@drawable/ic_music"
+            app:bt_shape="@drawable/stroke_music"
+            app:bt_title="@string/str_music" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item_weather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:bt_colorActive="@color/color_base_weather"
+            app:bt_colorInactive="@color/gray"
+            app:bt_icon="@drawable/ic_weather"
+            app:bt_shape="@drawable/stroke_weather"
+            app:bt_title="@string/str_weather" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/item_fun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:bt_colorActive="@color/color_base_fun"
+            app:bt_colorInactive="@color/gray"
+            app:bt_icon="@drawable/ic_function"
+            app:bt_shape="@drawable/stroke_fun"
+            app:bt_title="@string/str_fun" />
+
+    </com.gauravk.bubblenavigation.BubbleNavigationLinearView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

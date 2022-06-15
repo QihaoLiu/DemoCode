@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="color_base_music">#F03752</color>
+    <color name="color_base_weather">#2177B8</color>
+    <color name="color_base_fun">#E7A23F</color>
+
 </resources>

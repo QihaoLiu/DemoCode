@@ -21,8 +21,8 @@
         android:supportsRtl="true"
         android:name=".DemoCodeApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".RtspActivity" android:screenOrientation="landscape"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activity.RtspActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

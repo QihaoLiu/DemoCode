@@ -1,4 +1,4 @@
-package com.lqh.demo;
+package com.lqh.demo.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.lqh.base.activity.BaseActivity;
+import com.lqh.demo.R;
 
 import net.majorkernelpanic.streaming.Session;
 import net.majorkernelpanic.streaming.SessionBuilder;

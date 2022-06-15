@@ -47,4 +47,8 @@ dependencies {
      * https://github.com/Blankj/AndroidUtilCode
      */
     implementation 'com.blankj:utilcode:1.25.7'
+    /**
+     * https://github.com/gauravk95/bubble-navigation
+     */
+    implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
 }
