@@ -239,6 +239,7 @@ public abstract class VideoStream extends MediaStream {
 	public void setVideoQuality(VideoQuality videoQuality) {
 		if (!mRequestedQuality.equals(videoQuality)) {
 			mRequestedQuality = videoQuality.clone();
+			mQuality = mRequestedQuality.clone();
 			mUpdated = false;
 		}
 	}
@@ -280,6 +281,13 @@ public abstract class VideoStream extends MediaStream {
 
 	/** Stops the stream. */
 	public synchronized void stop() {
+		try {
+			if (mPacketizer != null) {
+				mPacketizer.stop();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if (mCamera != null) {
 			if (mMode == MODE_MEDIACODEC_API) {
 				mCamera.setPreviewCallbackWithBuffer(null);
@@ -464,7 +472,7 @@ public abstract class VideoStream extends MediaStream {
 					//Log.d(TAG,"Measured: "+1000000L/(now-oldnow)+" fps.");
 				}
 				try {
-					int bufferIndex = mMediaCodec.dequeueInputBuffer(500000);
+					int bufferIndex = mMediaCodec.dequeueInputBuffer((long)(mQuality.resX * mQuality.resY * 1.5));
 					if (bufferIndex>=0) {
 						inputBuffers[bufferIndex].clear();
 						if (data == null) Log.e(TAG,"Symptom of the \"Callback buffer was to small\" problem...");

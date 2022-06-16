@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">DemoCode</string>
+
+    <string name="name">QihaoLiu</string>
+    <string name="phone">+8615803999525</string>
+
     <string name="str_music">Music</string>
     <string name="str_weather">Weather</string>
     <string name="str_fun">Function</string>

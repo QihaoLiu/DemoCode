@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.lqh.base.activity.BaseActivity;
@@ -26,7 +27,8 @@ import net.majorkernelpanic.streaming.video.VideoQuality;
 public class RtspActivity extends BaseActivity implements SurfaceHolder.Callback , Session.Callback{
 
     public static final String TAG = "LeoLiu";
-    
+
+    private TextView mTips;
     private SurfaceView mSurfaceView;
     private Session mSession;
 
@@ -39,6 +41,7 @@ public class RtspActivity extends BaseActivity implements SurfaceHolder.Callback
     public void initView() {
         super.initView();
         mSurfaceView = (SurfaceView) findViewById(R.id.surface);
+        mTips = findView(R.id.tips);
     }
 
     @Override
@@ -47,8 +50,9 @@ public class RtspActivity extends BaseActivity implements SurfaceHolder.Callback
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
         editor.putString(RtspServer.KEY_PORT, String.valueOf(1234));
         editor.commit();
-
-        Log.d(TAG,"rtsp init data address "+ NetworkUtils.getIPAddress(true));
+        String address = NetworkUtils.getIPAddress(true) + ":1234";
+        Log.d(TAG,"rtsp init data address "+ address);
+        mTips.setText(address);
         mSession = SessionBuilder.getInstance()
                 .setSurfaceView(mSurfaceView)
                 .setPreviewOrientation(0)

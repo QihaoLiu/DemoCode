@@ -117,10 +117,7 @@ public class Session {
 	public Session() {
 		long uptime = System.currentTimeMillis();
 
-		HandlerThread thread = new HandlerThread("net.majorkernelpanic.streaming.Session");
-		thread.start();
-
-		mHandler = new Handler(thread.getLooper());
+		mHandler = new Handler(StreamWatcher.getmInstance().getHandlerThread().getLooper());
 		mMainHandler = new Handler(Looper.getMainLooper());
 		mTimestamp = (uptime/1000)<<32 & (((uptime-((uptime/1000)*1000))>>32)/1000); // NTP timestamp
 		mOrigin = "127.0.0.1";
@@ -640,7 +637,9 @@ public class Session {
 	public void release() {
 		removeAudioTrack();
 		removeVideoTrack();
-		mHandler.getLooper().quit();
+		if (mHandler != null) {
+			mHandler.removeCallbacksAndMessages(null);
+		}
 	}
 
 	private void postPreviewStarted() {

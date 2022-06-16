@@ -43,6 +43,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
@@ -331,11 +332,19 @@ public class RtspServer extends Service {
 			}
 		}
 
+		private String lastSocketInetAddress;
 		public void run() {
 			Log.i(TAG,"RTSP server listening on port "+mServer.getLocalPort());
 			while (!Thread.interrupted()) {
 				try {
-					new WorkerThread(mServer.accept()).start();
+					Socket socket = mServer.accept();
+					Log.i(TAG,"Server accept from "+socket.getInetAddress().getHostAddress());
+					if (!TextUtils.isEmpty(lastSocketInetAddress) && TextUtils.equals(lastSocketInetAddress,socket.getInetAddress().getHostAddress())) {
+						Log.i(TAG,"Had same InetAddress connect "+socket.getInetAddress());
+					}else {
+						lastSocketInetAddress = socket.getInetAddress().getHostAddress();
+						new WorkerThread(socket).start();
+					}
 				} catch (SocketException e) {
 					break;
 				} catch (IOException e) {
@@ -431,7 +440,10 @@ public class RtspServer extends Service {
 			mSession.release();
 
 			try {
+				mSessions.remove(mSession);
 				mClient.close();
+				mInput.close();
+				mOutput.close();
 			} catch (IOException ignore) {}
 
 			Log.i(TAG, "Client disconnected");
@@ -539,7 +551,7 @@ public class RtspServer extends Service {
                             ";server_port=" + src[0] + "-" + src[1] +
                             ";ssrc=" + Integer.toHexString(ssrc) +
                             ";mode=play\r\n" +
-                            "Session: " + "1185d20035702ca" + "\r\n" +
+                            "Session: " + mSession.hashCode() + "\r\n" +
                             "Cache-Control: no-cache\r\n";
                     response.status = Response.STATUS_OK;
 
@@ -557,7 +569,7 @@ public class RtspServer extends Service {
                         requestAttributes += "url=rtsp://" + mClient.getLocalAddress().getHostAddress() + ":" + mClient.getLocalPort() + "/trackID=" + 0 + ";seq=0,";
                     if (mSession.trackExists(1))
                         requestAttributes += "url=rtsp://" + mClient.getLocalAddress().getHostAddress() + ":" + mClient.getLocalPort() + "/trackID=" + 1 + ";seq=0,";
-                    requestAttributes = requestAttributes.substring(0, requestAttributes.length() - 1) + "\r\nSession: 1185d20035702ca\r\n";
+                    requestAttributes = requestAttributes.substring(0, requestAttributes.length() - 1) + "\r\nSession: \r\n"+mSession.hashCode();
 
                     response.attributes = requestAttributes;
 

@@ -4,16 +4,45 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <View
         android:id="@+id/title_fun"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        android:background="@color/color_base_fun"
-        android:gravity="center"
-        android:text="@string/str_fun"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_large"
+        android:layout_height="140dp"
+        android:background="@drawable/rect_fun"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/phone"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="30dp"/>
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="@string/phone"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/title_fun"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="30dp"/>
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_fun"
+        app:layout_constraintBottom_toBottomOf="@id/title_fun"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemView"

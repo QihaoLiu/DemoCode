@@ -34,17 +34,7 @@ public class ItemAdapter<T extends BaseActivity> extends BaseQuickAdapter<Item, 
     @Override
     protected void convert(BaseViewHolder helper, Item item) {
         helper.setText(R.id.name,item.getName());
-        helper.setText(R.id.address,item.getAddress());
-        helper.getView(R.id.item).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.equals(item.getName(),"libStreaming") && t != null) {
-                    Intent intent = new Intent();
-                    intent.setClass(t, RtspActivity.class);
-                    t.getActivity().startActivity(intent);
-                }
-            }
-        });
+        helper.setImageResource(R.id.icon,item.getIcon());
     }
 
 }

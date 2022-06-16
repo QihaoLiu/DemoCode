@@ -18,11 +18,6 @@ public class MusicFragment extends BaseFragment {
     @Override
     public void initView() {
         super.initView();
-        RecyclerView recyclerView = findView(R.id.itemView);
-        ItemAdapter adapter = new ItemAdapter(DataFactory.getItemData());
-        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(adapter);
-        adapter.setActivity(context);
     }
 
     @Override

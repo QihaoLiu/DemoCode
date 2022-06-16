@@ -1,6 +1,9 @@
 package com.lqh.demo.data;
 
+import com.blankj.utilcode.util.Utils;
 import com.lqh.base.utils.JSON;
+import com.lqh.demo.DemoCodeApplication;
+import com.lqh.demo.R;
 import com.lqh.demo.bean.Item;
 import com.lqh.demo.bean.User;
 
@@ -26,7 +29,7 @@ public class DataFactory {
     public static List<Item> getItemData(){
         List<Item> items = new ArrayList<Item>();
         items.clear();
-        items.add(new Item("https://github.com/fyhertz/libstreaming","libStreaming"));
+        items.add(new Item("Streaming", R.drawable.ic_rtsp));
         return items;
     }
 

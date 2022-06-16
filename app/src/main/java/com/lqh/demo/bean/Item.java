@@ -7,21 +7,13 @@ package com.lqh.demo.bean;
  */
 public class Item {
 
-    private String address;
-
     private String name;
 
-    public Item(String address, String name) {
-        this.address = address;
+    private int icon;
+
+    public Item(String name, int icon) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+        this.icon = icon;
     }
 
     public String getName() {
@@ -30,5 +22,13 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
     }
 }

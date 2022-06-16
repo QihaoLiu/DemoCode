@@ -138,13 +138,11 @@ public class SessionBuilder {
 			video.setVideoQuality(mVideoQuality);
 			video.setSurfaceView(mSurfaceView);
 			video.setPreviewOrientation(mOrientation);
-			video.setDestinationPorts(5006);
 		}
 
 		if (session.getAudioTrack()!=null) {
 			AudioStream audio = session.getAudioTrack();
 			audio.setAudioQuality(mAudioQuality);
-			audio.setDestinationPorts(5004);
 		}
 
 		return session;

@@ -13,6 +13,7 @@
         android:text="@string/str_weather"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_large"
+        android:paddingTop="@dimen/title_padding_top"
         app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

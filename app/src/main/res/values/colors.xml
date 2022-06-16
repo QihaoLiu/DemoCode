@@ -7,5 +7,6 @@
     <color name="color_base_music">#F03752</color>
     <color name="color_base_weather">#2177B8</color>
     <color name="color_base_fun">#E7A23F</color>
+    <color name="color_rtsp">#5D3131</color>
 
 </resources>
