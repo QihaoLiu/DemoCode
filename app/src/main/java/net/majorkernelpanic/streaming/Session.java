@@ -116,8 +116,7 @@ public class Session {
 	 */
 	public Session() {
 		long uptime = System.currentTimeMillis();
-
-		mHandler = new Handler(StreamWatcher.getmInstance().getHandlerThread().getLooper());
+		mHandler = new Handler(StreamWatcher.getInstance().getHandlerThread().getLooper());
 		mMainHandler = new Handler(Looper.getMainLooper());
 		mTimestamp = (uptime/1000)<<32 & (((uptime-((uptime/1000)*1000))>>32)/1000); // NTP timestamp
 		mOrigin = "127.0.0.1";

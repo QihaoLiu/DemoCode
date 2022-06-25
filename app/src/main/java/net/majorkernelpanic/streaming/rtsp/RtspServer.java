@@ -569,7 +569,7 @@ public class RtspServer extends Service {
                         requestAttributes += "url=rtsp://" + mClient.getLocalAddress().getHostAddress() + ":" + mClient.getLocalPort() + "/trackID=" + 0 + ";seq=0,";
                     if (mSession.trackExists(1))
                         requestAttributes += "url=rtsp://" + mClient.getLocalAddress().getHostAddress() + ":" + mClient.getLocalPort() + "/trackID=" + 1 + ";seq=0,";
-                    requestAttributes = requestAttributes.substring(0, requestAttributes.length() - 1) + "\r\nSession: \r\n"+mSession.hashCode();
+                    requestAttributes = requestAttributes.substring(0, requestAttributes.length() - 1) + "\r\nSession: "+mSession.hashCode()+"\r\n";
 
                     response.attributes = requestAttributes;
 
