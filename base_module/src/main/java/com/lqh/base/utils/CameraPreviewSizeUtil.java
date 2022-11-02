@@ -29,7 +29,7 @@ public class CameraPreviewSizeUtil {
         List<Camera.Size> sizeList = parameters.getSupportedPreviewSizes();
         if (showAllSupportedPreviewSizes) {
             for (Camera.Size size : sizeList) {
-                LogUtil.d(TAG,"Supported PreviewSizes " + size.width + " - " + size.height);
+                ILog.d(TAG,"Supported PreviewSizes " + size.width + " - " + size.height);
             }
         }
         int initWidth;

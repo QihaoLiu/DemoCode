@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import com.blankj.utilcode.util.StringUtils;
-import com.lqh.base.utils.LogUtil;
+import com.lqh.base.utils.ILog;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +44,7 @@ public abstract class BaseBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        LogUtil.i(TAG, "onReceive intent = " + intent);
+        ILog.i(TAG, "onReceive intent = " + intent);
         if (onReceiveListener != null) {
             onReceiveListener.onReceive(context, intent);
         }
@@ -78,9 +78,9 @@ public abstract class BaseBroadcastReceiver extends BroadcastReceiver {
     }
 
     public static BroadcastReceiver register(Context context, @Nullable BroadcastReceiver receiver, IntentFilter filter) {
-        LogUtil.i(TAG, "register >>>");
+        ILog.i(TAG, "register >>>");
         if (context == null || filter == null) {
-            LogUtil.e(TAG, "register  context == null || filter == null >> return;");
+            ILog.e(TAG, "register  context == null || filter == null >> return;");
             return receiver;
         }
 
@@ -90,16 +90,16 @@ public abstract class BaseBroadcastReceiver extends BroadcastReceiver {
     }
 
     public static void unregister(Context context, BroadcastReceiver receiver) {
-        LogUtil.i(TAG, "unregister >>>");
+        ILog.i(TAG, "unregister >>>");
         if (context == null || receiver == null) {
-            LogUtil.e(TAG, "unregister  context == null || receiver == null >> return;");
+            ILog.e(TAG, "unregister  context == null || receiver == null >> return;");
             return;
         }
 
         try {
             context.unregisterReceiver(receiver);
         } catch (Exception e) {
-            LogUtil.e(TAG, "unregister  try { context.unregisterReceiver(receiver);" +
+            ILog.e(TAG, "unregister  try { context.unregisterReceiver(receiver);" +
                     " } catch (Exception e) { \n" + e.getMessage());
         }
     }

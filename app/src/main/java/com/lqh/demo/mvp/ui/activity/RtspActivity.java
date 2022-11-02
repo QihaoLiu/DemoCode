@@ -1,4 +1,4 @@
-package com.lqh.demo.ui.activity;
+package com.lqh.demo.mvp.ui.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,10 +38,15 @@ public class RtspActivity extends BaseActivity implements SurfaceHolder.Callback
     }
 
     @Override
+    public void setupActivityComponent() {
+
+    }
+
+    @Override
     public void initView() {
         super.initView();
         mSurfaceView = (SurfaceView) findViewById(R.id.surface);
-        mTips = findView(R.id.tips);
+        mTips = (TextView) findView(R.id.tips);
     }
 
     @Override

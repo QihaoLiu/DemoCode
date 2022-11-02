@@ -1,4 +1,4 @@
-package com.lqh.demo.ui.fragment;
+package com.lqh.demo.mvp.ui.fragment;
 
 import com.lqh.base.activity.BaseFragment;
 import com.lqh.demo.R;
@@ -13,6 +13,11 @@ public class WeatherFragment extends BaseFragment {
     @Override
     public int getLayoutId() {
         return R.layout.fragment_weather;
+    }
+
+    @Override
+    public void setupActivityComponent() {
+
     }
 
     @Override

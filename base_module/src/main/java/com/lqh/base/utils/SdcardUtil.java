@@ -21,26 +21,26 @@ public class SdcardUtil {
             String getPath = Environment.getExternalStorageDirectory().getPath();
             if (!getPath.contains("null")) {
                 finalPath = getPath;
-                LogUtil.d(TAG,"getPath final path is " + finalPath);
+                ILog.d(TAG,"getPath final path is " + finalPath);
                 return finalPath;
             }
         } catch (Exception e) {
-            LogUtil.d(TAG,"getPath found exception is " + e.toString());
+            ILog.d(TAG,"getPath found exception is " + e.toString());
         }
 
         try {
             String getAbsolutePath = Environment.getExternalStorageDirectory().getAbsolutePath();
             if (!getAbsolutePath.contains("null")) {
                 finalPath = getAbsolutePath;
-                LogUtil.d(TAG,"getAbsolutePath final path is " + finalPath);
+                ILog.d(TAG,"getAbsolutePath final path is " + finalPath);
                 return finalPath;
             }
         } catch (Exception e) {
-            LogUtil.d(TAG,"getAbsolutePath found exception is " + e.toString());
+            ILog.d(TAG,"getAbsolutePath found exception is " + e.toString());
         }
 
         finalPath = BaseConstants.SDCARD;
-        LogUtil.d(TAG,"sdcard getPath use default path is " + finalPath);
+        ILog.d(TAG,"sdcard getPath use default path is " + finalPath);
         return finalPath;
     }
 

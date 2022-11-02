@@ -2,7 +2,7 @@ package com.lqh.database;
 
 import android.app.Application;
 
-import com.lqh.base.utils.LogUtil;
+import com.lqh.base.utils.ILog;
 import com.lqh.database.common.DBConstants;
 
 /**
@@ -40,7 +40,7 @@ public class DBManager {
         mDBApplication = application;
         DBConstants.DB_Module_Init_Status = true;
         init(DBConstants.Sql_Debug_Status);
-        LogUtil.i(DBConstants.TAG,"lqh db module init success");
+        ILog.i(DBConstants.TAG,"lqh db module init success");
     }
 
     public static native int init(boolean debug);

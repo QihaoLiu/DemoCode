@@ -1,4 +1,4 @@
-package com.lqh.demo.ui.fragment;
+package com.lqh.demo.mvp.ui.fragment;
 
 import android.content.Intent;
 import android.view.View;
@@ -9,7 +9,7 @@ import com.lqh.base.activity.BaseFragment;
 import com.lqh.demo.R;
 import com.lqh.demo.adapter.ItemAdapter;
 import com.lqh.demo.data.DataFactory;
-import com.lqh.demo.ui.activity.RtspActivity;
+import com.lqh.demo.mvp.ui.activity.RtspActivity;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -23,6 +23,11 @@ public class FunFragment extends BaseFragment {
     @Override
     public int getLayoutId() {
         return R.layout.fragment_fun;
+    }
+
+    @Override
+    public void setupActivityComponent() {
+
     }
 
     @Override

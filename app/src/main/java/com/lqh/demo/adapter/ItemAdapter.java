@@ -1,15 +1,10 @@
 package com.lqh.demo.adapter;
 
 
-import android.content.Intent;
-import android.text.TextUtils;
-import android.view.View;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.lqh.base.activity.BaseActivity;
 import com.lqh.demo.R;
-import com.lqh.demo.ui.activity.RtspActivity;
 import com.lqh.demo.bean.Item;
 
 import java.util.List;

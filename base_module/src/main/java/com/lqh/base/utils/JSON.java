@@ -60,7 +60,7 @@ public class JSON {
         try {
             return com.alibaba.fastjson.JSON.parseObject(getCorrectJson(json), clazz);
         } catch (Exception e) {
-            LogUtil.e(TAG, "parseObject  catch \n" + e.getMessage());
+            ILog.e(TAG, "parseObject  catch \n" + e.getMessage());
         }
         return null;
     }
@@ -82,7 +82,7 @@ public class JSON {
         try {
             return com.alibaba.fastjson.JSON.parseObject(getCorrectJson(json));
         } catch (Exception e) {
-            LogUtil.e(TAG, "parseObject  catch \n" + e.getMessage());
+            ILog.e(TAG, "parseObject  catch \n" + e.getMessage());
         }
         return null;
     }
@@ -98,7 +98,7 @@ public class JSON {
         try {
             return com.alibaba.fastjson.JSON.toJSONString(obj);
         } catch (Exception e) {
-            LogUtil.e(TAG, "toJSONString  catch \n" + e.getMessage());
+            ILog.e(TAG, "toJSONString  catch \n" + e.getMessage());
         }
         return null;
     }
@@ -117,7 +117,7 @@ public class JSON {
                 JSONObject json = parseObject((String) obj);
                 return json != null && json.isEmpty() == false;
             } catch (Exception e) {
-                LogUtil.e(TAG, "isJSONObject  catch \n" + e.getMessage());
+                ILog.e(TAG, "isJSONObject  catch \n" + e.getMessage());
             }
         }
 
@@ -137,7 +137,7 @@ public class JSON {
                 JSONArray json = parseArray((String) obj);
                 return json != null && json.isEmpty() == false;
             } catch (Exception e) {
-                LogUtil.e(TAG, "isJSONArray  catch \n" + e.getMessage());
+                ILog.e(TAG, "isJSONArray  catch \n" + e.getMessage());
             }
         }
 
@@ -152,7 +152,7 @@ public class JSON {
         try {
             return com.alibaba.fastjson.JSON.parseArray(getCorrectJson(json));
         } catch (Exception e) {
-            LogUtil.e(TAG, "parseArray  catch \n" + e.getMessage());
+            ILog.e(TAG, "parseArray  catch \n" + e.getMessage());
         }
         return null;
     }
@@ -165,7 +165,7 @@ public class JSON {
         try {
             return com.alibaba.fastjson.JSON.parseArray(getCorrectJson(json), clazz);
         } catch (Exception e) {
-            LogUtil.e(TAG, "parseArray  catch \n" + e.getMessage());
+            ILog.e(TAG, "parseArray  catch \n" + e.getMessage());
         }
         return null;
     }

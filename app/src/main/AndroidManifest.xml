@@ -20,9 +20,11 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:name=".DemoCodeApplication"
+        android:networkSecurityConfig="@xml/network_config"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.RtspActivity" android:screenOrientation="landscape"/>
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".mvp.ui.activity.RtspActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".mvp.ui.activity.MainActivity"/>
+        <activity android:name=".mvp.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

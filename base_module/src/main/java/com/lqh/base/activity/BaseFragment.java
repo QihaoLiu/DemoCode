@@ -8,14 +8,14 @@ import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.lqh.base.R;
-import com.lqh.base.interfaces.FragmentPresenter;
-import com.lqh.base.utils.LogUtil;
+import com.lqh.base.activity.itf.IFragment;
+import com.lqh.base.utils.ILog;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public abstract class BaseFragment extends Fragment implements FragmentPresenter {
+public abstract class BaseFragment extends Fragment implements IFragment {
 
     private static final String TAG = "BaseFragment";
 
@@ -43,11 +43,12 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
             initView();
             initData();
             initEvent();
+            setupActivityComponent();
         } catch (Exception e) {
             e.printStackTrace();
             LogUtils.e(TAG, e.getMessage());
         }
-        LogUtil.d(TAG, "onCreate >>>>>>>>>>>>>>>>>>>>>>>>");
+        ILog.d(TAG, "onCreate >>>>>>>>>>>>>>>>>>>>>>>>");
         return view;
     }
 
@@ -107,7 +108,7 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
      */
     public final void runUiThread(Runnable action) {
         if (isAlive() == false) {
-            LogUtil.w(TAG, "runUiThread  isAlive() == false >> return;");
+            ILog.w(TAG, "runUiThread  isAlive() == false >> return;");
             return;
         }
         context.runOnUiThread(action);
@@ -139,7 +140,7 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
             @Override
             public void run() {
                 if (intent == null) {
-                    LogUtil.w(TAG, "toActivity  intent == null >> return;");
+                    ILog.w(TAG, "toActivity  intent == null >> return;");
                     return;
                 }
                 //fragment中使用context.startActivity会导致在fragment中不能正常接收onActivityResult
@@ -169,18 +170,18 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 
     @Override
     public void onResume() {
-        LogUtil.d(TAG, "onResume <<<<<<<<<<<<<<<<<<<<<<<");
+        ILog.d(TAG, "onResume <<<<<<<<<<<<<<<<<<<<<<<");
         super.onResume();
         isRunning = true;
-        LogUtil.d(TAG, "onResume >>>>>>>>>>>>>>>>>>>>>>>>");
+        ILog.d(TAG, "onResume >>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Override
     public void onPause() {
-        LogUtil.d(TAG, "onPause <<<<<<<<<<<<<<<<<<<<<<<");
+        ILog.d(TAG, "onPause <<<<<<<<<<<<<<<<<<<<<<<");
         super.onPause();
         isRunning = false;
-        LogUtil.d(TAG, "onPause >>>>>>>>>>>>>>>>>>>>>>>>");
+        ILog.d(TAG, "onPause >>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     /**销毁并回收内存
@@ -188,7 +189,7 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
      */
     @Override
     public void onDestroy() {
-        LogUtil.d(TAG, "onDestroy <<<<<<<<<<<<<<<<<<<<<<<");
+        ILog.d(TAG, "onDestroy <<<<<<<<<<<<<<<<<<<<<<<");
 
         isAlive = false;
         isRunning = false;
@@ -198,7 +199,7 @@ public abstract class BaseFragment extends Fragment implements FragmentPresenter
 
         context = null;
 
-        LogUtil.d(TAG, "onDestroy >>>>>>>>>>>>>>>>>>>>>>>>");
+        ILog.d(TAG, "onDestroy >>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
 }

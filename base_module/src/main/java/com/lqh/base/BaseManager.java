@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.lqh.base.common.BaseConstants;
-import com.lqh.base.utils.LogUtil;
+import com.lqh.base.utils.ILog;
 import com.lqh.base.utils.SdcardUtil;
 
 /**
@@ -37,18 +37,18 @@ public class BaseManager {
 
     public void init(Application application) {
         if (BaseConstants.Base_Module_Init_Status) {
-            LogUtil.d("lqh base module had init !");
+            ILog.d("lqh base module had init !");
             return;
         }
         mBaseApplication = application;
         mBaseContext = mBaseApplication.getApplicationContext();
         BaseConstants.Base_Module_Init_Status = true;
         BaseConstants.Sdcard_Path = SdcardUtil.getPath();
-        LogUtil.i("lqh base module init success ! module name is "+getModuleName());
+        ILog.i("lqh base module init success ! module name is "+getModuleName());
     }
 
     public void setDebug(boolean debug) {
-        LogUtil.mDebuggable = debug?BaseConstants.LOG_LEVEL_ALL:BaseConstants.LOG_LEVEL_OFF;
+        ILog.mDebuggable = debug?BaseConstants.LOG_LEVEL_ALL:BaseConstants.LOG_LEVEL_OFF;
     }
 
     public String getModuleName() {

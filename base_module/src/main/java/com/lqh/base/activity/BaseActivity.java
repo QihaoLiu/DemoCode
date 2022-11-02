@@ -14,10 +14,14 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.lqh.base.R;
-import com.lqh.base.interfaces.ActivityPresenter;
+import com.lqh.base.activity.itf.IActivity;
+import com.lqh.base.mvp.IPresenter;
 import com.lqh.base.receiver.BaseBroadcastReceiver;
-import com.lqh.base.utils.LogUtil;
+import com.lqh.base.utils.ILog;
 
+import javax.inject.Inject;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -26,11 +30,15 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author LeoLiu
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements ActivityPresenter {
+public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivity implements IActivity {
 
     private static final String TAG = "BaseActivity";
 
     protected BaseActivity context = null;
+
+    @Inject
+    @Nullable
+    protected P mPresenter;
 
     /**
      * 是否存活
@@ -78,7 +86,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
             @Override
             public void run() {
                 if (intent == null) {
-                    LogUtil.w(TAG, "toActivity  intent == null >> return;");
+                    ILog.w(TAG, "toActivity  intent == null >> return;");
                     return;
                 }
                 //fragment中使用context.startActivity会导致在fragment中不能正常接收onActivityResult
@@ -102,7 +110,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
      */
     public final void runUiThread(Runnable action) {
         if (isAlive() == false) {
-            LogUtil.w(TAG, "runUiThread  isAlive() == false >> return;");
+            ILog.w(TAG, "runUiThread  isAlive() == false >> return;");
             return;
         }
         runOnUiThread(action);
@@ -111,7 +119,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogUtil.d(TAG, "onCreate <<<<<<<<<<<<<<<<<<<<<<<");
+        ILog.d(TAG, "onCreate <<<<<<<<<<<<<<<<<<<<<<<");
         BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
         BarUtils.setStatusBarLightMode(this, true);
         setContentView(getLayoutId());
@@ -123,11 +131,12 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
             initView();
             initData();
             initEvent();
+            setupActivityComponent();
         } catch (Exception e) {
             e.printStackTrace();
             LogUtils.e(TAG, e.getMessage());
         }
-        LogUtil.d(TAG, "onCreate >>>>>>>>>>>>>>>>>>>>>>>>");
+        ILog.d(TAG, "onCreate >>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     /**
@@ -222,7 +231,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
                     try {
                         overridePendingTransition(enterAnim, exitAnim);
                     } catch (Exception e) {
-                        LogUtil.e(TAG, "finish overridePendingTransition(enterAnim, exitAnim);" +
+                        ILog.e(TAG, "finish overridePendingTransition(enterAnim, exitAnim);" +
                                 " >> catch (Exception e) {  " + e.getMessage());
                     }
                 }
@@ -232,18 +241,18 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
 
     @Override
     protected void onResume() {
-        LogUtil.d(TAG, "onResume <<<<<<<<<<<<<<<<<<<<<<<");
+        ILog.d(TAG, "onResume <<<<<<<<<<<<<<<<<<<<<<<");
         super.onResume();
         isRunning = true;
-        LogUtil.d(TAG, "onResume >>>>>>>>>>>>>>>>>>>>>>>>");
+        ILog.d(TAG, "onResume >>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Override
     protected void onPause() {
-        LogUtil.d(TAG, "onPause <<<<<<<<<<<<<<<<<<<<<<<");
+        ILog.d(TAG, "onPause <<<<<<<<<<<<<<<<<<<<<<<");
         super.onPause();
         isRunning = false;
-        LogUtil.d(TAG, "onPause >>>>>>>>>>>>>>>>>>>>>>>>");
+        ILog.d(TAG, "onPause >>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     /**
@@ -251,15 +260,19 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
      */
     @Override
     protected void onDestroy() {
-        LogUtil.d(TAG, "onDestroy <<<<<<<<<<<<<<<<<<<<<<<");
+        ILog.d(TAG, "onDestroy <<<<<<<<<<<<<<<<<<<<<<<");
         BaseBroadcastReceiver.unregister(context, receiver);
 
         isAlive = false;
         isRunning = false;
         super.onDestroy();
 
+        if (mPresenter != null) {
+            mPresenter.onDestroy();//释放资源
+        }
+
         context = null;
-        LogUtil.d(TAG, "onDestroy >>>>>>>>>>>>>>>>>>>>>>>>");
+        ILog.d(TAG, "onDestroy >>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -268,7 +281,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
         public void onReceive(Context context, Intent intent) {
             String action = intent == null ? null : intent.getAction();
             if (isAlive() == false || StringUtils.isTrimEmpty(action)) {
-                LogUtil.e(TAG, "receiver.onReceive  isAlive() == false" +
+                ILog.e(TAG, "receiver.onReceive  isAlive() == false" +
                         " || StringUtil.isNotEmpty(action, true) == false >> return;");
                 return;
             }
