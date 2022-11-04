@@ -9,19 +9,26 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.LogUtils;
 import com.lqh.base.R;
 import com.lqh.base.activity.itf.IFragment;
+import com.lqh.base.mvp.IPresenter;
 import com.lqh.base.utils.ILog;
+
+import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public abstract class BaseFragment extends Fragment implements IFragment {
+public abstract class BaseFragment<P extends IPresenter> extends Fragment implements IFragment {
 
     private static final String TAG = "BaseFragment";
 
     protected View view = null;
 
     protected BaseActivity context = null;
+
+    @Inject
+    @Nullable
+    protected P mPresenter;
 
     /**
      * 是否存活
@@ -196,6 +203,10 @@ public abstract class BaseFragment extends Fragment implements IFragment {
         super.onDestroy();
 
         intent = null;
+
+        if (mPresenter != null) {
+            mPresenter.onDestroy();//释放资源
+        }
 
         context = null;
 

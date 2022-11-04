@@ -52,7 +52,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
     @Override
     public void setupActivityComponent() {
-        DaggerSplashComponent.builder().view(this).build().inject(this);
+        DaggerSplashComponent.builder().view(this).build().injectSplashActivity(this);
     }
 
     @Override

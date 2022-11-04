@@ -6,6 +6,7 @@ import android.app.Application;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.lqh.base.BaseManager;
 import com.lqh.database.DBManager;
+import com.qweather.sdk.view.HeConfig;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class DemoCodeApplication extends Application{
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
     };
 
     @Override
@@ -30,6 +33,10 @@ public class DemoCodeApplication extends Application{
         BaseManager.getInstance().init(this);
         BaseManager.getInstance().setDebug(true);
         DBManager.getInstance().init(this);
+
+        HeConfig.init("HE2211031423371663", "57383d648fb94ca984f38a223fbcc2b1");
+        HeConfig.switchToDevService();
+
         if (!PermissionUtils.isGranted(permissions)) {
             PermissionUtils.permission(permissions).callback(new PermissionUtils.FullCallback() {
                 @Override

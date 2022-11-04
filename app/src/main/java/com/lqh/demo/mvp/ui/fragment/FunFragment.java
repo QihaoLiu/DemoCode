@@ -34,7 +34,7 @@ public class FunFragment extends BaseFragment {
     public void initView() {
         super.initView();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context,4,LinearLayoutManager.VERTICAL,false);
-        RecyclerView recyclerView = findView(R.id.itemView);
+        RecyclerView recyclerView = (RecyclerView) findView(R.id.itemView);
         mAdapter = new ItemAdapter(DataFactory.getItemData());
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(mAdapter);

@@ -8,5 +8,7 @@
     <color name="color_base_weather">#2177B8</color>
     <color name="color_base_fun">#E7A23F</color>
     <color name="color_rtsp">#5D3131</color>
+    <color name="colorTextDark">#424242</color>
+    <color name="colorTextDark2nd">#757575</color>
 
 </resources>

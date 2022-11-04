@@ -12,7 +12,7 @@ import dagger.Component;
 @Component(modules = SplashModule.class)
 public interface SplashComponent {
 
-    void inject(SplashActivity activity);
+    void injectSplashActivity(SplashActivity activity);
 
     @Component.Builder
     interface Builder {
