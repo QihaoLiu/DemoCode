@@ -109,6 +109,8 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements V
                 type = new SunnyType(getActivity(), info);
                 break;
             case "多云":
+            case "少云":
+            case "晴间多云":
                 info.setSunrise("00:01");
                 info.setSunset("23:59");
                 info.setMoonrise("00:00");
@@ -121,6 +123,24 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements V
                 type = new OvercastType(getActivity(), info);
                 break;
             case "雨":
+            case "阵雨":
+            case "强阵雨":
+            case "强雷阵雨":
+            case "雷阵雨伴有冰雹":
+            case "小雨":
+            case "中雨":
+            case "大雨":
+            case "极端降雨":
+            case "毛毛雨/细雨":
+            case "暴雨":
+            case "大暴雨":
+            case "特大暴雨":
+            case "冻雨":
+            case "小到中雨":
+            case "中到大雨":
+            case "大到暴雨":
+            case "暴雨到大暴雨":
+            case "大暴雨到特大暴雨":
                 RainType rainType = new RainType(getActivity(), RainType.RAIN_LEVEL_2, RainType.WIND_LEVEL_2);
                 rainType.setFlashing(true);
                 type = rainType;
@@ -131,21 +151,46 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements V
                 type = rainSnowType;
                 break;
             case "雪":
+            case "小雪":
+            case "中雪":
+            case "大雪":
+            case "暴雪":
+            case "雨雪天气":
+            case "阵雨夹雪":
+            case "阵雪":
+            case "小到中雪":
+            case "中到大雪":
+            case "大到暴雪":
                 type = new SnowType(getActivity(), SnowType.SNOW_LEVEL_2);
                 break;
             case "冰雹":
                 type = new HailType(getActivity());
                 break;
             case "雾":
+            case "薄雾":
+            case "浓雾":
+            case "大雾":
+            case "强浓雾":
+            case "特强浓雾":
                 type = new FogType(getActivity());
                 break;
             case "雾霾":
+            case "中度霾":
+            case "重度霾":
+            case "严重霾":
                 type = new HazeType(getActivity());
                 break;
+            case "扬沙":
+            case "浮尘":
             case "沙尘暴":
+            case "强沙尘暴":
                 type = new SandstormType(getActivity());
                 break;
             default:
+                info.setSunrise("00:01");
+                info.setSunset("23:59");
+                info.setMoonrise("00:00");
+                info.setMoonset("00:01");
                 type = new SunnyType(getActivity(), info);
         }
         dynamicWeatherView.setType(type);
