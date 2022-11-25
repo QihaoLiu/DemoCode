@@ -1,5 +1,7 @@
 package com.lqh.demo.mvp.presenter;
 
+import android.util.Log;
+
 import com.lqh.base.mvp.BasePresenter;
 import com.lqh.demo.bean.LocationBean;
 import com.lqh.demo.mvp.contract.WeatherContract;
@@ -18,12 +20,13 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.Model,Weathe
         super(model, rootView);
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     void onCreate() {
         requestWeather();
     }
 
     public void requestWeather() {
+        mRootView.showLoading();
         mModel.getWeather(new WeatherModel.OnRequestFinishedListener() {
             @Override
             public void onResult(LocationBean locationBean,WeatherNowBean.NowBaseBean weatherNowBean) {
@@ -32,6 +35,7 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.Model,Weathe
                 }else {
                     mRootView.callResult(locationBean,weatherNowBean);
                 }
+                mRootView.hideLoading();
             }
         });
     }

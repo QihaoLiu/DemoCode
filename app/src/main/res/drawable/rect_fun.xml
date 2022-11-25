@@ -3,6 +3,9 @@
 
     <corners android:bottomLeftRadius="10dp"
         android:bottomRightRadius="10dp"/>
-    <solid android:color="@color/color_base_fun"/>
+    <gradient android:startColor="@color/color_base_music"
+        android:endColor="@color/color_base_fun"
+        android:centerColor="@color/color_base_weather"
+        android:angle="45"/>
 
 </shape>

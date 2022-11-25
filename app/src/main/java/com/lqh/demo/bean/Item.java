@@ -9,10 +9,17 @@ public class Item {
 
     private String name;
 
+    private boolean isGif;
     private int icon;
 
     public Item(String name, int icon) {
         this.name = name;
+        this.icon = icon;
+    }
+
+    public Item(String name, boolean isGif, int icon) {
+        this.name = name;
+        this.isGif = isGif;
         this.icon = icon;
     }
 
@@ -30,5 +37,13 @@ public class Item {
 
     public void setIcon(int icon) {
         this.icon = icon;
+    }
+
+    public boolean isGif() {
+        return isGif;
+    }
+
+    public void setGif(boolean gif) {
+        isGif = gif;
     }
 }

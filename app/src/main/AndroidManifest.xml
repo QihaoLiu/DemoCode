@@ -46,6 +46,7 @@
         android:networkSecurityConfig="@xml/network_config"
         android:theme="@style/AppTheme">
         <activity android:name=".mvp.ui.activity.RtspActivity" android:screenOrientation="landscape"/>
+        <activity android:name=".mvp.ui.activity.WindyActivity" android:screenOrientation="portrait"/>
         <activity android:name=".mvp.ui.activity.MainActivity"/>
         <activity android:name=".mvp.ui.activity.SplashActivity">
             <intent-filter>

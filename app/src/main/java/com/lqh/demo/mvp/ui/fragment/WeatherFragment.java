@@ -22,6 +22,8 @@ import com.lqh.demo.widget.weather.bean.SandstormType;
 import com.lqh.demo.widget.weather.bean.ShortWeatherInfo;
 import com.lqh.demo.widget.weather.bean.SnowType;
 import com.lqh.demo.widget.weather.bean.SunnyType;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.impl.LoadingPopupView;
 import com.qweather.sdk.bean.weather.WeatherNowBean;
 
 import androidx.annotation.NonNull;
@@ -37,6 +39,8 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements V
     private TextView precip;
     private TextView wind;
     private TextView windDir;
+
+    private LoadingPopupView mLoadingPopupView;
 
     @Override
     public int getLayoutId() {
@@ -219,4 +223,24 @@ public class WeatherFragment extends BaseFragment<WeatherPresenter> implements V
         ToastUtils.showShort(message);
     }
 
+    @Override
+    public void showLoading() {
+        if (mLoadingPopupView == null) {
+            mLoadingPopupView = new XPopup.Builder(getActivity())
+                    .dismissOnBackPressed(false)
+                    .isLightNavigationBar(true)
+                    .isViewMode(true)
+                    .asLoading();
+        }
+        if (!mLoadingPopupView.isShow()) {
+            mLoadingPopupView.show();
+        }
+    }
+
+    @Override
+    public void hideLoading() {
+        if (mLoadingPopupView != null) {
+            mLoadingPopupView.smartDismiss();
+        }
+    }
 }

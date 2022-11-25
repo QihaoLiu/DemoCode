@@ -17,7 +17,7 @@ public class MusicPresenter extends BasePresenter<MusicContract.Model,MusicContr
         super(model, rootView);
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     void onCreate() {
         requestMusic();
     }
