@@ -13,6 +13,7 @@ import com.lqh.base.activity.BaseFragment;
 import com.lqh.demo.R;
 import com.lqh.demo.adapter.ItemAdapter;
 import com.lqh.demo.data.DataFactory;
+import com.lqh.demo.mvp.ui.activity.DeviceActivity;
 import com.lqh.demo.mvp.ui.activity.RtspActivity;
 import com.lqh.demo.mvp.ui.activity.WindyActivity;
 
@@ -70,6 +71,11 @@ public class FunFragment extends BaseFragment {
                 if (position == 1) {
                     Intent intent = new Intent();
                     intent.setClass(context, WindyActivity.class);
+                    context.startActivity(intent);
+                }
+                if (position == 2) {
+                    Intent intent = new Intent();
+                    intent.setClass(context, DeviceActivity.class);
                     context.startActivity(intent);
                 }
             }

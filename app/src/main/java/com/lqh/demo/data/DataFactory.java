@@ -29,6 +29,7 @@ public class DataFactory {
         items.clear();
         items.add(new Item("Streaming", R.drawable.ic_rtsp));
         items.add(new Item("Windy.com", R.drawable.ic_windy));
+        items.add(new Item("I N F O", R.drawable.ic_info));
         return items;
     }
 
